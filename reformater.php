@@ -1,32 +1,58 @@
-<?php
+<div>
+    <button onclick="goBack()">Go Back</button>
 
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+    <br>
+</div>
+
+
+<?php
+//Github: sarziv
+//Creator: Šarūnas Živila
+//Vanilla PHP
+//gets the file from the form -> fileToUpload
 $file_handle = fopen($_FILES['fileToUpload']['tmp_name'], 'rb');
 
-fileRestriction();
 
-//Formating Type
-if(isset($_POST['submit'])){
-    $selected_var = $_POST['Format'];
-    formatSwitch($selected_var,$file_handle);
-}
+fileRestriction($file_handle);
 
 //File restrictions
-function fileRestriction (){
+function fileRestriction ($file_handle){
     $uploadOk = 1;
+    //Is file uploaded
+    if(is_uploaded_file($_FILES['fileToUpload']['tmp_name'])) {
+        //Only can upload TXT files
+        if ($_FILES["fileToUpload"]["type"] !== "text/plain") {
+            echo "It was not text file.\n";
+            $uploadOk = 0;
+        }
 //Capping the size of the file
-    if ($_FILES["fileToUpload"]["size"] > 500000) {
-        echo "Sorry, your file is too large.\n";
-        $uploadOk = 0;
-    }
+        if ($_FILES["fileToUpload"]["size"] == 0) {
+            echo "File is Empty!\n";
+            $uploadOk = 0;
+        } elseif ($_FILES["fileToUpload"]["size"] > 500000) {
+            echo "Sorry, your file is too large.\n";
+            $uploadOk = 0;
+        }
 
-//Only can upload TXT files
-    if ($_FILES["fileToUpload"]["type"] !== "text/plain") {
-        echo "It was not text file.\n";
-        $uploadOk = 0;
-    }
 //Error if uploadOk is 0
-    if ($uploadOk == 0) {
-        echo "Sorry, your file was not reformated \n";
+        if ($uploadOk == 0) {
+            echo "Sorry, your file was not reformated \n";
+        } else {
+            //Formating Type
+            if (isset($_POST['submit'])) {
+                $selected_var = $_POST['Format'];
+                //after submit and if file is valid choose format type from form
+                formatSwitch($selected_var, $file_handle);
+            }
+        }
+    }else {
+        echo 'File was not uploaded.';
+        exit;
     }
 }
 //Switch for formating type
@@ -45,51 +71,48 @@ function formatSwitch($switchcase,$file_handle)
         case "Spit_three_equal":
             splitThree($file_handle);
             break;
+        case "Count_letters":
+            mostCommon($file_handle);
+            break;
+        case "Pick_winner":
+            pickWinner($file_handle);
+            break;
     }
 }
 //order ASC
 function orderASC ($file_handle) {
-    while (!feof($file_handle) ) {
-        $line_of_text = fgets($file_handle);
-        $parts = explode(',', $line_of_text);
-    }
-   asort($parts);
+    $Numbers = numberExplode($file_handle);
+   asort($Numbers);
     echo "This is Ordering by Asc.\n";
-        foreach ($parts as $part) {
-            echo $part . " " ;
+        foreach ($Numbers as $number) {
+            echo $number . " " ;
         }
 
 
 }
 //order DESC
 function orderDESC ($file_handle) {
-    while (!feof($file_handle) ) {
-        $line_of_text = fgets($file_handle);
-        $parts = explode(',', $line_of_text);
-    }
-    rsort($parts);
+    $Numbers = numberExplode($file_handle);
+    rsort($Numbers);
     echo "This is Ordering by Desc.\n";
-        foreach ($parts as $part) {
-            echo $part . " ";
+        foreach ($Numbers as $number) {
+            echo $number . " ";
         }
 
 }
 //Split number into two equal groups
 function splitTwo($file_handle) {
 
-    while (!feof($file_handle) ) {
-        $line_of_text = fgets($file_handle);
-        $Numbers = explode(',', $line_of_text);
-    }
+    $Numbers = numberExplode($file_handle);
     $X  = array();
     $Y = array();
 
     rsort($Numbers);
 
     //check if array if empty and push the values
-    function check_if_empty($X,$Y,$Numbers)
+    function check_if_empty($X,$Y,$k,$Numbers)
     {
-        $k = 0;
+
         if (sizeof($X) || sizeof($Y) == 0) {
             if (empty($X)) {
                 array_push($X, $Numbers[$k]);
@@ -99,13 +122,14 @@ function splitTwo($file_handle) {
                 $k++;
             }
         }
+        return $k;
     }
 //add value to a min of the array
     function find_min($X,$Y,$Numbers) {
 
         for ($k = 0; $k <= sizeof($Numbers)-1; $k++) {
 
-            check_if_empty( $X,$Y,$Numbers);
+            check_if_empty( $X,$Y,$k,$Numbers);
 
             if((array_sum($X) == array_sum($Y)))
             {
@@ -137,11 +161,7 @@ function splitTwo($file_handle) {
 }
 //Split number into three equal groups
 function splitThree ($file_handle) {
-
-    while (!feof($file_handle) ) {
-        $line_of_text = fgets($file_handle);
-        $Numbers = explode(',', $line_of_text);
-    }
+    $Numbers = numberExplode($file_handle);
     $X  = array();
     $Y = array();
     $Z = array();
@@ -209,8 +229,29 @@ function splitThree ($file_handle) {
     find_min($X,$Y,$Z,$Numbers);
 
 }
+//most common number from the array
+function mostCommon($file_handle) {
+    $Numbers = numberExplode($file_handle);
+    $counted = array_count_values($Numbers);
+    arsort($counted);
+   echo 'Most common - > ' . key($counted);
+}
+//random number from the array
+function pickWinner ($file_handle) {
+    $Numbers = numberExplode($file_handle);
+    $rand_keys = array_rand($Numbers,1);
+    echo 'Winner is -> ' . $Numbers[$rand_keys] . "\n";
 
-//TODO Most comman
-//TODO Pick a winner
-
-?>
+}
+//TODO add diffrent type of number separations ___would be useful___
+//explode number by separation
+function numberExplode($file_handle) {
+    while (!feof($file_handle) ) {
+        $line_of_text = fgets($file_handle);
+        $Numbers = explode(',', $line_of_text);
+    }
+    //file close after reading
+    fclose($file_handle);
+    //return the array after reading it from the file
+    return $Numbers;
+}
