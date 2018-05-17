@@ -40,7 +40,6 @@ function fileRestriction ($file_handle){
         }
     }else {
         echo 'File was not uploaded.';
-        exit;
     }
 }
 //Switch for formating type
@@ -247,7 +246,6 @@ function numberExplode($file_handle) {
 
 <div>
     <button onclick="goBack()">Go Back</button>
-
     <script>
         function goBack() {
             window.history.back();
