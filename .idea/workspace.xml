@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a3513e24-e2d0-49ad-a748-0419bb9a7ad0" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/numbersBig.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/numbersSmall.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/numbers.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/reformater.php" beforeDir="false" afterPath="$PROJECT_DIR$/reformater.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,8 +18,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1088">
-              <caret line="64" column="85" selection-start-line="64" selection-start-column="85" selection-end-line="64" selection-end-column="85" />
+            <state relative-caret-position="1105">
+              <caret line="65" lean-forward="true" selection-start-line="65" selection-end-line="65" />
             </state>
           </provider>
         </entry>
@@ -31,7 +28,7 @@
         <entry file="file://$PROJECT_DIR$/reformater.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="392">
-              <caret line="239" column="6" lean-forward="true" selection-start-line="239" selection-start-column="6" selection-end-line="239" selection-end-column="6" />
+              <caret line="254" column="13" lean-forward="true" selection-start-line="254" selection-start-column="13" selection-end-line="254" selection-end-column="13" />
               <folding>
                 <element signature="e#10#26#0#PHP" expanded="true" />
                 <element signature="n#fileRestriction#0;n#!!top" />
@@ -146,12 +143,12 @@
       <updated>1526468504468</updated>
       <workItem from="1526468505687" duration="24096000" />
       <workItem from="1526515205445" duration="71000" />
-      <workItem from="1526551957239" duration="11959000" />
+      <workItem from="1526551957239" duration="12470000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36126000" />
+    <option name="totallyTimeSpent" value="36637000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -271,15 +268,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1088">
-          <caret line="64" column="85" selection-start-line="64" selection-start-column="85" selection-end-line="64" selection-end-column="85" />
+        <state relative-caret-position="1105">
+          <caret line="65" lean-forward="true" selection-start-line="65" selection-end-line="65" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/reformater.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="392">
-          <caret line="239" column="6" lean-forward="true" selection-start-line="239" selection-start-column="6" selection-end-line="239" selection-end-column="6" />
+          <caret line="254" column="13" lean-forward="true" selection-start-line="254" selection-start-column="13" selection-end-line="254" selection-end-column="13" />
           <folding>
             <element signature="e#10#26#0#PHP" expanded="true" />
             <element signature="n#fileRestriction#0;n#!!top" />

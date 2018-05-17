@@ -1,15 +1,3 @@
-<div>
-    <button onclick="goBack()">Go Back</button>
-
-    <script>
-        function goBack() {
-            window.history.back();
-        }
-    </script>
-    <br>
-</div>
-
-
 <?php
 //Github: sarziv
 //Creator: Šarūnas Živila
@@ -255,3 +243,16 @@ function numberExplode($file_handle) {
     //return the array after reading it from the file
     return $Numbers;
 }
+?>
+
+<div>
+    <button onclick="goBack()">Go Back</button>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+    <br>
+</div>
+
